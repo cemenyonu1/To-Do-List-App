@@ -14,9 +14,9 @@ function addToList() {
 
 
 
-function crossOut(element) {
-    element.addClass('strike');
-};
+//function crossOut(element) {
+ //   element.addClass('strike');
+//};
 
 function remove(element) {
     element.addClass('delete');
@@ -34,3 +34,7 @@ button.on('click', () => {
 crossOutButton.on('click', () => {
     remove(li)
 });
+
+li.on('dblclick', () => {
+    li.toggleClass('strike')
+})
