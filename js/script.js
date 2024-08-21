@@ -1,40 +1,31 @@
-let li = $('<li></li>');
-let ol = $('#list');
-let button = $('#button');
-let inputValue = $('#input').val();
-let crossOutButton = $('<button class="crossOutButton">X</>');
-
-li.append(inputValue);
-li.append(crossOutButton);
-
+function newItem() {
+    let inputValue = $('#input').val();
 //add item to list function
-function addToList() {
-    ol.append(li);
-};
 
+    if(inputValue === '') {
+        return alert('Please Type Something')
+    }else{
+        let li = $('<li></li>');
+        let ol = $('#list');
+        let button = $('#button');
+        let crossOutButton = $('<button class="crossOutButton">X</>');
 
+        li.append(inputValue + "  ");
+        li.append(crossOutButton);
 
-//function crossOut(element) {
- //   element.addClass('strike');
-//};
+        ol.append(li);
 
-function remove(element) {
-    element.addClass('delete');
-};
+        crossOutButton.on('click', () => {
+            $('li').addClass('delete')
+        });
 
-//event listeners
-button.on('click', () => {
-    if(inputValue.length > 0) {
-        addToList()
-    } else {
-        alert('You must write something!')
+        li.on('dblclick', () => {
+            li.toggleClass('strike')
+        });
+
+        $('#input').val('');
+
+        ol.sortable();
+
     }
-});
-
-crossOutButton.on('click', () => {
-    remove(li)
-});
-
-li.on('dblclick', () => {
-    li.toggleClass('strike')
-})
+};
